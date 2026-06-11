@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rules — The Unwritten 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1a14;
+    --ink-muted: #5c5444;
+    --ink-faint: #9a9080;
+    --page: #f2ede4;
+    --page-alt: #ece7dc;
+    --gold: #9a7d3a;
+    --rule: #cfc5ae;
+    --rule-thin: rgba(154,125,58,0.22);
+    --serif: 'Cormorant Garamond', 'Georgia', serif;
+    --caps: 'Cormorant SC', 'Georgia', serif;
+    --sans: 'Helvetica Neue', 'Arial', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  a { color: var(--ink); }
+  a:hover { opacity: 0.6; }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Nav */
+  .topnav {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--gold);
+  }
+
+  .topnav a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  .topnav a:hover { color: var(--ink); opacity: 1; }
+
+  .topnav .sep { margin: 0 8px; }
+
+  /* Header */
+  header {
+    padding: 44px 0 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: var(--serif); letter-spacing: .01em;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  /* TOC */
+  .toc {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .toc-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .toc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+
+  .toc-links a {
+    font-size: 14px;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+  }
+
+  .toc-links a:hover { color: var(--ink); border-color: var(--ink); opacity: 1; }
+
+  /* Sections */
+  section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: var(--serif); letter-spacing: .01em;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .section-time {
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+
+  h3:first-child { margin-top: 0; }
+
+  h4 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  p.muted { color: var(--ink-muted); font-size: 14px; }
+
+  /* Suits grid */
+  .suits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 16px 0;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+
+  .suit-cell {
+    padding: 14px 16px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .suit-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .suit-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Example card */
+  .example-card {
+    margin: 16px 0;
+    padding: 16px 20px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--page-alt);
+  }
+
+  .example-card .card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .example-card p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Spell tables */
+  .spell-section {
+    margin-top: 24px;
+  }
+
+  .spell-section:first-child { margin-top: 0; }
+
+  .spell-suit-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .spell-rows { }
+
+  .spell-row {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  .spell-row:last-child { border-bottom: none; }
+
+  .spell-name { font-weight: 500; color: var(--ink); }
+  .spell-effect { color: var(--ink-muted); line-height: 1.5; }
+
+  /* Major arcana list */
+  .major-list { margin-top: 8px; }
+
+  .major-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    font-size: 14px;
+    align-items: baseline;
+  }
+
+  .major-item:last-child { border-bottom: none; }
+  .major-name { font-weight: 500; color: var(--ink); }
+  .major-effect { color: var(--ink-muted); line-height: 1.5; }
+
+  /* Rule callouts */
+  .rule-box {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-left: 2px solid var(--ink-faint);
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .rule-box p { font-size: 14px; color: var(--ink-muted); margin: 0; }
+
+  /* Ritual list */
+  .ritual-list {
+    margin-top: 8px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ritual-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ritual-item:last-child { border-bottom: none; }
+
+  .ritual-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .ritual-theme {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .ritual-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 0 56px;
+    font-size: 13px;
+    color: var(--gold);
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 24px;
+  }
+
+  @media (max-width: 520px) {
+    .suits-grid { grid-template-columns: 1fr; }
+    .spell-row { grid-template-columns: 1fr; gap: 4px; }
+    .major-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="sitenav" style="border-bottom:1px solid var(--rule);">
+  <div style="max-width:700px;margin:0 auto;padding:0 28px;display:flex;align-items:center;">
+    <a href="index.html" style="font-family:var(--caps);font-size:13px;letter-spacing:.14em;color:var(--ink);text-decoration:none;padding:17px 0;margin-right:32px;white-space:nowrap;">The Unwritten 2</a>
+    <div style="display:flex;">
+      <a href="index.html" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;padding:19px 13px;border-bottom:1.5px solid transparent;display:block;">Home</a>
+      <a href="practical.html" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;padding:19px 13px;border-bottom:1.5px solid transparent;display:block;">Practical</a>
+      <a href="rules.html" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:19px 13px;border-bottom:1.5px solid var(--gold);display:block;">Rules</a>
+      <a href="contact.html" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;padding:19px 13px;border-bottom:1.5px solid transparent;display:block;">Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header>
+    <p class="eyebrow">The Unwritten 2 · Kraków · October 24, 2026</p>
+    <h1>Rules</h1>
+  </header>
+
+  <div class="toc">
+    <div class="toc-label">Contents</div>
+    <div class="toc-links">
+      <a href="#acts">Acts</a>
+      <a href="#communication">Communication</a>
+      <a href="#magic">Magic</a>
+      <a href="#minor-arcana">Minor Arcana</a>
+      <a href="#major-arcana">Major Arcana</a>
+      <a href="#spells">Spells</a>
+      <a href="#rituals">Rituals</a>
+      <a href="#final">Final Confrontation</a>
+      <a href="#major-effects">Major Arcana effects</a>
+    </div>
+  </div>
+
+  <!-- Acts -->
+  <section id="acts">
+    <h2>Acts</h2>
+
+    <h3>Act I — Unity of Time</h3>
+    <div class="section-time">12:00 – 15:00</div>
+    <p>You begin the day dispersed across the city, starting in pairs: one Player with their Familiar. This is your time to explore relationships and beliefs.</p>
+    <p>No Player may harm another. No one may leave the Game.</p>
+    <p>You'll meet other Players in short pre-designed scenes — old friends reunited, or older enemies. These scenes build your understanding of others and start your first alliances.</p>
+    <p>Minor Arcana become available for collection, but everything remains hazy. No one is allowed to reveal their alignment or agitate for a side. Feel your way forward.</p>
+
+    <h3>Act II — Unity of Place</h3>
+    <div class="section-time">15:00 – 16:00</div>
+    <p>All Players and Familiars gather for a formal lunch. Arcana collection is paused.</p>
+    <p>At the start of the meal, you receive sealed envelopes containing any Minor Arcana cards you successfully collected in Act I. Now is the time to feel which side you are drifting toward. In the end there will be no middle ground.</p>
+
+    <h3>Act III — Unity of Action</h3>
+    <div class="section-time">16:00 – 20:00</div>
+    <p>The Major Arcana are now in play — cards of great power and consequence. You can still gather Minor Arcana and try to gain all the power possible.</p>
+    <p>From this point on, it becomes possible to kill another Player.</p>
+    <p>At 20:00, all will gather in a final location to determine the fate of the world.</p>
+  </section>
+
+  <!-- Communication -->
+  <section id="communication">
+    <h2>Communication</h2>
+    <p>Players communicate through a Telegram chat serving as an in-game channel. The chat is fully anonymous and restricted to a timed message interval. All messages must be written in character.</p>
+    <p>You may use the chat to: arrange meetings, spread rumors, leak information, or talk to fellow Players.</p>
+    <p>There is a separate chat for Familiars — not anonymous, with no message limits.</p>
+    <div class="rule-box"><p>Direct messages between Players or Familiars are strictly forbidden. Familiar players may bring written letters to another Player.</p></div>
+  </section>
+
+  <!-- Magic intro -->
+  <section id="magic">
+    <h2>Magic</h2>
+    <p>Every character can use magic. Most will conserve their power for the final confrontation, but no Player should pass up a chance to tip the balance with a well-timed spell.</p>
+    <p>Magical power is represented by Tarot cards. Cards do not exist as physical objects in the game world — they cannot be traded or handed over. Your cards represent your magical power, not your inventory. Players are discouraged from showing or discussing specific card names or values.</p>
+
+    <h4>Resources in play</h4>
+    <p>Two sets of 56 Minor Arcana and one set of 22 Major Arcana.</p>
+
+    <h4>Magic types</h4>
+    <div class="suits-grid">
+      <div class="suit-cell">
+        <div class="suit-name">Curses — Pentacles</div>
+        <p class="suit-desc">Act silently and at a distance. Can rob someone of sight, ruin memory, or twist luck. Also offer protection against spells targeting the mind.</p>
+      </div>
+      <div class="suit-cell">
+        <div class="suit-name">Glamours — Cups</div>
+        <p class="suit-desc">Manipulate emotion and perception. Beguile, charm, inspire false dreams, cloak what is real. Can also hide people or objects from detection.</p>
+      </div>
+      <div class="suit-cell">
+        <div class="suit-name">Geasa — Swords</div>
+        <p class="suit-desc">Dominate reason and thought. Implant commands, suppress doubts, or force choices. Also grant resistance to curses.</p>
+      </div>
+      <div class="suit-cell">
+        <div class="suit-name">Divinations — Wands</div>
+        <p class="suit-desc">Illuminate hidden motives, reveal secrets, unravel threads of fate. Protect against glamours and illusion.</p>
+      </div>
+    </div>
+
+    <h4>How to cast a spell</h4>
+    <p>Each spell has a formula made of Tarot cards. Basic spells use three Minor Arcana of the corresponding suit. Complex spells may require more cards, including Majors.</p>
+    <p>Assemble at least 3 cards of the required suit and send a request to the GM via chatbot — or discuss it personally with the GM. Each magician performs rituals in a way that fits their tradition. For basic spells, the ritual should last no more than 5 minutes.</p>
+    <p>The GM will notify the target of the spell effect. If the spell requires the caster's presence, a note can be handed to the caster for delivery.</p>
+
+    <h4>Duration and cooldown</h4>
+    <p>Unless stated otherwise, all spells last 30 minutes. Targets must roleplay the described effects. Cards used in spellcasting cannot be reused for 2 hours after casting — but this does not affect their use in the final ritual.</p>
+  </section>
+
+  <!-- Minor Arcana -->
+  <section id="minor-arcana">
+    <h2>Minor Arcana</h2>
+    <p>Each Minor Arcana suit is tied to a human sense: Cups — Smell, Wands — Hearing, Swords — Sight, Pentacles — Touch.</p>
+
+    <h3>Claiming a card</h3>
+    <p>Two or more players collaborate to complete a real-world action tied to the chosen card's symbolic meaning. Example:</p>
+
+    <div class="example-card">
+      <div class="card-title">2 of Cups — The Sweetest Scent</div>
+      <p>Sense: Smell (Cups). Theme: Connection, attraction. Together with at least one other player, find the sweetest scent in the city — so sweet it reminds you of better times. While experiencing it, share a childhood memory it evokes.</p>
+    </div>
+
+    <p>Once completed, submit a short caption (1–2 sentences) and the names of all participants to the game's Telegram chatbot. Who receives the card is decided by an internal algorithm.</p>
+    <p>You may attempt the same card multiple times, but with a different group each time.</p>
+    <p>Players receive the results of their first card attempts at the beginning of Act II during lunch. After Act II, cards are awarded at the central hub right after they are received. Act II itself is a pause for Arcana collection.</p>
+
+    <h3>Familiars in rituals</h3>
+    <p>When a Player takes part in a ritual and shares a story or memory, their Familiar can add one single stroke to it. This stroke should either reveal a hidden side of the story (dark, forgotten, forbidden) or introduce an unexpected twist the Player did not say. It always follows the "Yes, and…" principle — the addition does not cancel the Player's words.</p>
+    <p>Rituals made with a Familiar are prioritized when it is decided who receives the card.</p>
+  </section>
+
+  <!-- Major Arcana -->
+  <section id="major-arcana">
+    <h2>Major Arcana</h2>
+    <p>In Act III, the Major Arcana — the most powerful and rare cards — become available. Unlike the Minor Arcana, each is singular and tied to a specific Player in the Great Game.</p>
+
+    <h3>Claiming a Major Arcana card</h3>
+    <p>To claim one you must: correctly identify another Player's true identity, trigger the corresponding event through in-game action, and report the situation to the GM via chatbot. Only one Player may claim each card. Familiars may sense which Major Arcana have been claimed through their mysterious channels.</p>
+  </section>
+
+  <!-- Spells -->
+  <section id="spells">
+    <h2>Spell effects</h2>
+
+    <div class="spell-section">
+      <div class="spell-suit-label">Curses — Pentacles</div>
+      <div class="spell-rows">
+        <div class="spell-row"><span class="spell-name">Kill a Player</span><span class="spell-effect">Lethal Contest: look the target in the eyes; both silently draw one random card from their own collected sets. Higher rank kills the lower. Tie = both injured, neither dies.</span></div>
+        <div class="spell-row"><span class="spell-name">Curse</span><span class="spell-effect">For 30 minutes, the target cannot collect new cards.</span></div>
+        <div class="spell-row"><span class="spell-name">Ward from Curses</span><span class="spell-effect">Target is immune to all Curses for 2 hours (ongoing effects remain).</span></div>
+        <div class="spell-row"><span class="spell-name">Custom Curse (Major)</span><span class="spell-effect">Define a precise, non-lethal malediction for 30 minutes. Must be physical/mundane in feel; cannot cause direct harm.</span></div>
+      </div>
+    </div>
+
+    <div class="spell-section" style="margin-top: 28px;">
+      <div class="spell-suit-label">Glamours — Cups</div>
+      <div class="spell-rows">
+        <div class="spell-row"><span class="spell-name">Fear</span><span class="spell-effect">For 30 minutes, the target panics seeing a certain object/person/location and cannot be close to it.</span></div>
+        <div class="spell-row"><span class="spell-name">Attraction</span><span class="spell-effect">For 30 minutes the target is strongly drawn to a named person/place/object (cannot force self-harm).</span></div>
+        <div class="spell-row"><span class="spell-name">Ward from Glamours</span><span class="spell-effect">Target is immune to Glamours for 2 hours.</span></div>
+        <div class="spell-row"><span class="spell-name">Custom Illusion (Major)</span><span class="spell-effect">Tailor a convincing glamour for a person/place/object for up to 3 targets for 30 minutes. Can mislead senses and emotions, but cannot force self-harm.</span></div>
+      </div>
+    </div>
+
+    <div class="spell-section" style="margin-top: 28px;">
+      <div class="spell-suit-label">Geasa — Swords</div>
+      <div class="spell-rows">
+        <div class="spell-row"><span class="spell-name">Truthful Answers</span><span class="spell-effect">Target must answer three of your questions honestly and clearly (no follow-ups).</span></div>
+        <div class="spell-row"><span class="spell-name">Suggestion</span><span class="spell-effect">Implant a thought that feels self-made for 30 minutes (no identity rewrite, no direct self-harm orders).</span></div>
+        <div class="spell-row"><span class="spell-name">Ward from Geasa</span><span class="spell-effect">Target is immune to Geasa for 2 hours (ongoing geasa persist).</span></div>
+        <div class="spell-row"><span class="spell-name">Custom Manipulation (Major)</span><span class="spell-effect">Implant a bespoke constraint, drive, or decision-frame. No direct harm, no identity rewrite. Lasts 30 minutes or until fulfilled.</span></div>
+      </div>
+    </div>
+
+    <div class="spell-section" style="margin-top: 28px;">
+      <div class="spell-suit-label">Divinations — Wands</div>
+      <div class="spell-rows">
+        <div class="spell-row"><span class="spell-name">Divination</span><span class="spell-effect">Name an object or person and one axis (location/history/ownership for objects; nature/fate/location for people). GM provides visions and clues.</span></div>
+        <div class="spell-row"><span class="spell-name">Speak with Familiars</span><span class="spell-effect">Your Familiar (or a willing Familiar you touch) can speak human language clearly for 30 minutes.</span></div>
+        <div class="spell-row"><span class="spell-name">Ward from Divination</span><span class="spell-effect">Target is immune to Divinations for 2 hours (ongoing ones persist).</span></div>
+        <div class="spell-row"><span class="spell-name">Custom Divination (Major)</span><span class="spell-effect">Ask a deep, tailored question about a person/place/object/event. Receive clear, actionable insight from the GM.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rituals -->
+  <section id="rituals">
+    <h2>Rituals</h2>
+    <p>Minor Arcana cards are claimed through real-world rituals performed with other players across the city. Each card has a theme and a challenge tied to one of the four senses. Two or more players must collaborate to complete it, then report to the GM via chatbot.</p>
+    <p>The rituals below are grouped by suit. Each suit corresponds to a sense and a school of magic.</p>
+
+    <h3>Cups — Smell</h3>
+    <div class="ritual-list">
+
+      <div class="ritual-item">
+        <div class="ritual-name">Ace of Cups — The First Drop</div>
+        <div class="ritual-theme">New emotions, beginnings</div>
+        <p class="ritual-desc">Find a completely new, unknown, and strange scent together with another player. As you inhale it, share with each other a new beginning you secretly wish for your character. Give each other a vow — if you receive this card, you will help your partner reach their new beginning.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">2 of Cups — The Sweetest Scent</div>
+        <div class="ritual-theme">Connection, attraction</div>
+        <p class="ritual-desc">Together with at least one other player, find the sweetest scent in the city — so sweet it reminds you of better times. While experiencing it, share a childhood memory it evokes. Tell what makes you feel safe and trust another person.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">3 of Cups — A Toast to the Past</div>
+        <div class="ritual-theme">Friendship, celebration</div>
+        <p class="ritual-desc">With two other players, find the most unusual drink and share it together. As you toast, recall moments of unexpected joy or victory together, and make a pact to meet again.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">4 of Cups — The Smell that Haunts</div>
+        <div class="ritual-theme">Dissatisfaction, withdrawal</div>
+        <p class="ritual-desc">Find an unpleasant or stale smell. With another player, reflect on something you once longed for that now feels meaningless. End the ritual in silence — do not talk for another hour.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">5 of Cups — The Scent of Loss</div>
+        <div class="ritual-theme">Grief, regret</div>
+        <p class="ritual-desc">Together with another player, find a scent that reminds you of someone you've lost. Share who this person was, how you lost them, and why it was your fault. Leave behind a token at the spot as a mark of mourning.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">6 of Cups — Perfume of Innocence</div>
+        <div class="ritual-theme">Nostalgia, kindness</div>
+        <p class="ritual-desc">Find a scent that feels like magic. With another player, share a wish you forgot about long ago. End by promising to show kindness to each other in the Great Game.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">7 of Cups — Fragrance of Illusion</div>
+        <div class="ritual-theme">Temptation, fantasy, choices</div>
+        <p class="ritual-desc">With another player, find a scent that could be mistaken for something else. Describe together the illusions it inspires: a perfect life, a dream future, or a forbidden desire. End by secretly deciding whether you trust or mistrust your partner until the end of the Act.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">8 of Cups — Abandoned Fragrance</div>
+        <div class="ritual-theme">Walking away, searching for deeper meaning</div>
+        <p class="ritual-desc">Together with another player, find a scent you both dislike. Share something in your life you want to abandon or leave behind. After sharing, look each other in the eyes, knowing — you will betray each other the next time opportunity presents.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">9 of Cups — Aroma of Fulfillment</div>
+        <div class="ritual-theme">Contentment, satisfaction</div>
+        <p class="ritual-desc">Find a scent that makes you feel content. With another player, share a secret wish that, if fulfilled, would bring you joy in the Great Game. End the ritual with a gesture of gratitude.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">10 of Cups — Fragrance of Harmony</div>
+        <div class="ritual-theme">Family, unity, peace</div>
+        <p class="ritual-desc">Gather with at least three players. Together, find a scent that feels like "home." As you breathe it in, each must share what "home" means to them. End by linking arms or hands in a circle before dispersing.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Page of Cups — Curious Nose</div>
+        <div class="ritual-theme">Discovery, openness</div>
+        <p class="ritual-desc">Find a small, surprising scent source. Each of you shares a story of a first time — first crush, first magic, or the first time you felt truly seen. On your wrist, air-draw the initial of a feeling this scent awakens.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Knight of Cups — The Scented Quest</div>
+        <div class="ritual-theme">Devotion, invitation</div>
+        <p class="ritual-desc">Find a scent on the move. Follow it for some time without speaking. At the end, each composes a one-sentence message (an invitation, apology, or vow) to deliver to a named Player today. Tap wrists together and say, "I bear this." Set a specific hour you'll deliver it; if you fail, your partner may claim a favor.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Queen of Cups — The Comfort Blend</div>
+        <div class="ritual-theme">Care, empathy</div>
+        <p class="ritual-desc">Seek a place where scents bring comfort. While breathing them together, each tells a story of comfort given or received. Agree on a shared "calming word"; the next time either speaks it this Act, the other must offer a brief tangible kindness.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">King of Cups — Calm Amid the Aroma</div>
+        <div class="ritual-theme">Poise, emotional leadership</div>
+        <p class="ritual-desc">Go where a dominant smell rules the space. Stand in it and keep slow, steady breaths for one minute while each recalls a time you led others through turmoil. Set an emotional rule you'll both keep for one hour, then seal it with a synchronized breath.</p>
+      </div>
+
+    </div>
+
+    <h3>Wands — Hearing</h3>
+    <div class="ritual-list">
+
+      <div class="ritual-item">
+        <div class="ritual-name">Ace of Wands — The First Spark</div>
+        <div class="ritual-theme">Inspiration, beginnings</div>
+        <p class="ritual-desc">Find the first street musician or performer you encounter. Pause to listen, and tell your companion about a time when you decided to completely change your life. End the ritual by promising each other how you are going to change your life now.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">2 of Wands — Echoes of Choice</div>
+        <div class="ritual-theme">Planning, crossroads</div>
+        <p class="ritual-desc">Find a street corner where two distinct sounds compete. Share a story about a choice that altered your path, then decide together which way you'd walk if you had to. End by pointing in two different directions, then choosing one in unison.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">3 of Wands — Distant Horizons</div>
+        <div class="ritual-theme">Expansion, foresight</div>
+        <p class="ritual-desc">Seek out a sound from far away. While listening, share a dream that feels just out of reach. End by finally confessing something you've been avoiding for too long to your ritual partner.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">4 of Wands — The Celebration Song</div>
+        <div class="ritual-theme">Harmony, joy</div>
+        <p class="ritual-desc">Find a place where people are celebrating. Have a celebration yourself — share a reason to, even if it might be sad. Try to believe it for several minutes: laugh, feel, dance.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">5 of Wands — Clash of Voices</div>
+        <div class="ritual-theme">Conflict, competition</div>
+        <p class="ritual-desc">Seek a crowded, noisy place where many voices overlap aggressively. With your partner, find a point of conflict and join it. Feel something burn within you and finish the ritual on a high note.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">6 of Wands — Acclaim of the Crowd</div>
+        <div class="ritual-theme">Recognition, success</div>
+        <p class="ritual-desc">Find the sound of applause, cheering, or approval. While listening, find something about your partner to recognize them for. End by bowing to your companion as if receiving an ovation.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">7 of Wands — Defiance on the Heights</div>
+        <div class="ritual-theme">Resistance, perseverance</div>
+        <p class="ritual-desc">Find a high place where a sound rises above the rest. Speak about a time you stood firm despite the odds. The next time someone asks you a favor — you will reject it.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">8 of Wands — Swift Currents</div>
+        <div class="ritual-theme">Speed, momentum</div>
+        <p class="ritual-desc">Find two different tempos in the city (fast and slow). Tap each on your partner's wrist. Decide which tempo your Game needs now. Swear to match that tempo for the next scene.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">9 of Wands — Guarded Silence</div>
+        <div class="ritual-theme">Vigilance, resilience</div>
+        <p class="ritual-desc">Find the faintest sound in a quiet place. Share a secret you've kept guarded.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">10 of Wands — Burden of Noise</div>
+        <div class="ritual-theme">Overwhelm, duty</div>
+        <p class="ritual-desc">Go to a spot where sounds are overwhelming and oppressive. Share what responsibility is laying on your shoulders right now. Would you like to leave it? If yes — do so.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Page of Wands — Curious Tune</div>
+        <div class="ritual-theme">Discovery, enthusiasm</div>
+        <p class="ritual-desc">Find a strange, unusual sound in the city. Ask your partner questions until they reveal a fact that surprises you.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Knight of Wands — Call to Action</div>
+        <div class="ritual-theme">Boldness, adventure</div>
+        <p class="ritual-desc">Seek a sudden, commanding sound. Do an impulsive action. Share things that make your blood boil with excitement.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Queen of Wands — Warmth of Voice</div>
+        <div class="ritual-theme">Charisma, confidence</div>
+        <p class="ritual-desc">Search for a warm, welcoming sound. Take your partner's hand and try to build trust with them. After finishing the ritual, you will trust each other deeply.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">King of Wands — The Commanding Word</div>
+        <div class="ritual-theme">Authority, leadership</div>
+        <p class="ritual-desc">Find a dominating lone voice. Listen for 30 seconds. Exchange proclamations to each other about what must happen today. Repeat it back as a vow.</p>
+      </div>
+
+    </div>
+
+    <h3>Swords — Sight</h3>
+    <div class="ritual-list">
+
+      <div class="ritual-item">
+        <div class="ritual-name">Ace of Swords — The First Sight</div>
+        <div class="ritual-theme">Clarity, revelation</div>
+        <p class="ritual-desc">Find the highest place from which you can see the city clearly. Wait until something in the distance catches your eye. Speak aloud one truth you've avoided saying, cutting through your own hesitation. Write that truth down and exchange it with your partner.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">2 of Swords — A Glance of Balance</div>
+        <div class="ritual-theme">Choice, stalemate</div>
+        <p class="ritual-desc">Together with another player, find a place where two paths diverge. Stand in silence, each gazing in opposite directions. Share what difficult choice lingers in your life, and which way you secretly lean. End by pointing to one direction. If you both point the same way — the ritual succeeds.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">3 of Swords — A Sight of Heartbreak</div>
+        <div class="ritual-theme">Grief, separation</div>
+        <p class="ritual-desc">With two others, search for something broken in the city. Stand before it, and each recall a time your heart was broken. Speak what still aches.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">4 of Swords — The Resting Gaze</div>
+        <div class="ritual-theme">Rest, retreat</div>
+        <p class="ritual-desc">Alone or with one other, find a quiet place with a view that feels hidden from the city's noise. Sit and watch in silence for 10 minutes. Share what thought came to you unbidden while staring. Close your eyes together, then reopen them at the same time.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">5 of Swords — The Sight of Defeat</div>
+        <div class="ritual-theme">Conflict, loss</div>
+        <p class="ritual-desc">With another player, find a spot where you see people hurrying, competing, or clashing. Watch until you notice someone clearly losing, giving up, or walking away. Reveal to each other what might make you feel like a loser.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">6 of Swords — The Distant Horizon</div>
+        <div class="ritual-theme">Transition, journey</div>
+        <p class="ritual-desc">Together with another player, climb to a high place. Look far into the distance. Share what you are leaving behind in this Game, and what you secretly hope lies ahead. Make a promise to meet again — soon, within the Game.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">7 of Swords — Hidden Sight</div>
+        <div class="ritual-theme">Deception, strategy</div>
+        <p class="ritual-desc">With another player, search for something partly concealed in the city. Once you find it, each reveal one secret strategy or trick you are keeping in the Great Game. Wink at each other, then look away, as if denying the moment ever happened.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">8 of Swords — Trapped Vision</div>
+        <div class="ritual-theme">Restriction, paralysis</div>
+        <p class="ritual-desc">With another, find a place where the view is blocked. Stand behind it and describe to each other what freedom means to you. Share how you are trapped in your real life.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">9 of Swords — A Midnight Sight</div>
+        <div class="ritual-theme">Anxiety, nightmares</div>
+        <p class="ritual-desc">Find a sight in the city that unsettles you. Stare at it until unease rises. Share your worst recurring nightmare, or the fear that keeps you awake at night.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">10 of Swords — The End in Sight</div>
+        <div class="ritual-theme">Ruin, finality</div>
+        <p class="ritual-desc">With at least two others, find the most desolate sight in the city. Together, study it. Each speak aloud the hardest ending you ever lived through.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Page of Swords — The Curious Gaze</div>
+        <div class="ritual-theme">Observation, restlessness</div>
+        <p class="ritual-desc">With another Player, secretly follow a stranger for one block — not to stalk, but to observe. Watch how they move, what they notice, what they ignore. At the end, describe what story you invented for them. Then ask your partner what that story reveals about you.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Knight of Swords — The Charging Vision</div>
+        <div class="ritual-theme">Action, conviction</div>
+        <p class="ritual-desc">Find an open space. Choose a distant object together with another Player. Walk toward it at a fast pace without speaking, as if pursuing an invisible goal. When you arrive, declare what fight or mission drives you in the Game. If both missions contradict — the ritual succeeds.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Queen of Swords — The Clear Eye</div>
+        <div class="ritual-theme">Perception, independence</div>
+        <p class="ritual-desc">With another Player, sit facing each other where you can see your reflections. For some minutes, say nothing — only look. Then each tells the other what truth they believe you are hiding. If both accept at least part of what was said — the ritual succeeds.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">King of Swords — The Final Word</div>
+        <div class="ritual-theme">Authority, judgment, resolve</div>
+        <p class="ritual-desc">Together with another Player, find a place that feels solemn or elevated. Stand side by side, looking in the same direction. Each names one question haunting them in the Game — something they cannot decide. Try to find an answer for each other.</p>
+      </div>
+
+    </div>
+
+    <h3>Pentacles — Touch</h3>
+    <div class="ritual-list">
+
+      <div class="ritual-item">
+        <div class="ritual-name">Ace of Pentacles — The First Stone</div>
+        <div class="ritual-theme">Potential, foundation</div>
+        <p class="ritual-desc">With another player, find a building currently under construction. Both place your hands on the perimeter. Share the very first "foundation" you laid in your life that still supports you. End by suggesting an addition to this foundation to each other. Both must accept to receive the card.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">2 of Pentacles — The Balancing Hands</div>
+        <div class="ritual-theme">Balance, adaptation</div>
+        <p class="ritual-desc">Locate a spot with two distinct ground textures side by side. Touch both surfaces and then swap. Share the two roles you juggle that strain you. End by agreeing which role you'll drop for one hour.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">3 of Pentacles — The Crafted Work</div>
+        <div class="ritual-theme">Collaboration, skill</div>
+        <p class="ritual-desc">Find a public craft artifact with maker's marks. Touch the signature or plaque. Each tell of a time your hands learned a skill from others. End by deciding one thing you'll co-craft before Act III.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">4 of Pentacles — The Grasped Coin</div>
+        <div class="ritual-theme">Possession, control</div>
+        <p class="ritual-desc">Seek a locked thing in public. Both hold the same lock or chain. Confess what you are guarding too tightly. End by promising to let this thing go.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">5 of Pentacles — Cold Walls</div>
+        <div class="ritual-theme">Hardship, exclusion</div>
+        <p class="ritual-desc">Find a place of exclusion: a "No Entry" door, a bricked-up window, spikes on a ledge, or a doorway with cold draft. Touch the barrier. Share a memory of being shut out. Walk outside the nearest boundary line and conspire together whom among the other Players you will exclude from your group.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">6 of Pentacles — A Shared Touch</div>
+        <div class="ritual-theme">Generosity, exchange</div>
+        <p class="ritual-desc">Locate something that serves mutual aid. Exchange something tangible (note, ribbon, trinket) and a secret. Decide who "gives" and who "receives" in your duo for the next scene.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">7 of Pentacles — The Waiting Soil</div>
+        <div class="ritual-theme">Patience, cultivation</div>
+        <p class="ritual-desc">Find a young tree or other plant. With bare hands, touch the soil around it. Each name something you're growing that won't pay off today. Whisper a promise and press a small symbol (drawn in dust or soil) that only your partner knows.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">8 of Pentacles — The Hands at Work</div>
+        <div class="ritual-theme">Practice, diligence</div>
+        <p class="ritual-desc">Seek a person working with their hands. Without disturbing them, observe their motions for 60 seconds, then move aside and repeat the rhythm together on a nearby surface. Share the discipline you practice in secret.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">9 of Pentacles — Velvet of Solitude</div>
+        <div class="ritual-theme">Independence, refinement</div>
+        <p class="ritual-desc">Find the surface that reminds you of your partner's hand. Both name a private success you never celebrated. For the next scene, you both decline one request.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">10 of Pentacles — Stone of Legacy</div>
+        <div class="ritual-theme">Family, heritage</div>
+        <p class="ritual-desc">Locate a place with many handprints. Everyone presses a palm near the prints. Each says what weight you will carry so others don't have to. Touch each other's hands and say "We continue" in unison.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Page of Pentacles — Curious Fingers</div>
+        <div class="ritual-theme">Study, beginnings</div>
+        <p class="ritual-desc">Find a Braille sign, tactile map, or unusual surface. Trace it silently with your fingertips. Tell what new skill you commit to learning during the Game. End by tracing a single letter on your partner's palm that hints at it.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Knight of Pentacles — Steady Grip</div>
+        <div class="ritual-theme">Responsibility, persistence</div>
+        <p class="ritual-desc">Seek a column or load-bearing support. Place both hands on the same spot and lean a little weight into it. Each states a duty and a deadline for today. Swap a tangible reminder you'll present back when done.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">Queen of Pentacles — Gentle Hands</div>
+        <div class="ritual-theme">Care, generosity</div>
+        <p class="ritual-desc">Find a public watering point (animal bowl, birdbath, plant cistern). With clean hands, touch only the rim. Each tells a moment you quietly cared for someone. End with a brief, explicit consented touch (hand on forearm or shoulder) and a promise of aid if called.</p>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-name">King of Pentacles — The Solid Throne</div>
+        <div class="ritual-theme">Authority, stability</div>
+        <p class="ritual-desc">Seek a royal-related sign. Sit by the sight of it. Each declares where your authority comes from and what it costs. End by setting a time-boxed decree you'll uphold for one hour.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Final Confrontation -->
+  <section id="final">
+    <h2>The Final Confrontation</h2>
+    <p>At the appointed time, the GM signals the start of the ritual. The ritual space is sealed: a transparent, impenetrable barrier surrounds the area. Only Players and their Familiars may remain inside. Once sealed, no one may enter or exit until the ritual is complete. No combat or spellcasting is allowed inside the circle, except what is explicitly permitted by these rules.</p>
+    <p>Each Player must declare their allegiance — Openers or Closers. Once chosen here, the side cannot be changed.</p>
+
+    <h3>Turn structure</h3>
+    <p>Each round, one Player from each side steps forward. Their Familiar may stand behind, giving advice. The GM announces the trump suit — either randomly drawn from the remaining deck, or the last collected Minor Arcana if all cards are in play. Openers go first.</p>
+
+    <h3>Playing the game</h3>
+    <p>Turns proceed in clockwise order, alternating between sides. A player's turn consists of playing one Minor Arcana card, announced aloud with its value and suit.</p>
+    <p>The first player may play any card. Each following player must play either: a card of the same value (any suit), a higher card of the same suit, or a trump card (any value). To follow a trump, you must play another trump of the same or higher value.</p>
+    <p>If a player cannot or does not want to play a card, they forfeit the round. The last player to place a card wins the round. The winner counts the cards played and announces the total — these cards are discarded and points go to the winning side.</p>
+
+    <h3>Major Arcana in the final</h3>
+    <p>A Major Arcana may be played as a wild Minor Arcana — higher than any non-trump but lower than any trump. It can be followed by another Major Arcana or a trump. Each Major Arcana also has a unique power, usable on your turn, immediately before your turn, or at any time depending on the card. To use it, read its effect aloud and discard it. It grants no points unless played as a Minor Arcana.</p>
+
+    <h3>Ending the ritual</h3>
+    <p>Once all players of one side have left the Circle, the remaining side counts and sacrifices all remaining cards into the fire, stating the side for which they are offered. The side with the most cards sacrificed wins the Ritual — and possibly, the fate of the world.</p>
+    <div class="rule-box"><p>The outcome of the Ritual does not end the game. The final phrase "Game Over" will be announced by the GM to signal the true end. Until that moment, follow the lead of the Game Master.</p></div>
+  </section>
+
+  <!-- Major Arcana Effects -->
+  <section id="major-effects">
+    <h2>Major Arcana effects</h2>
+    <p>To use a Major Arcana effect, the Player must read its text aloud.</p>
+
+    <div class="major-list">
+      <div class="major-item"><span class="major-name">The Lovers</span><span class="major-effect">Play on your turn. Takes on the exact identity (rank and suit) of the card played before it. If played at the start of a round, counts as the lowest possible card.</span></div>
+      <div class="major-item"><span class="major-name">The Devil</span><span class="major-effect">Play at the start of a round. Each trump played this round adds +2 to the stake — points go to the winning side.</span></div>
+      <div class="major-item"><span class="major-name">The Hierophant</span><span class="major-effect">Play at the start of a round. Name a suit — for each card of that suit played this round, your side earns 1 additional point.</span></div>
+      <div class="major-item"><span class="major-name">The High Priestess</span><span class="major-effect">Play at the start of a round. Name a card rank — for each card of that rank played this round, your side earns 1 additional point.</span></div>
+      <div class="major-item"><span class="major-name">The Star</span><span class="major-effect">Play before your turn. The targeted Player discards one random card — it adds its value to the round's stakes.</span></div>
+      <div class="major-item"><span class="major-name">The Emperor</span><span class="major-effect">Play on your turn. This card becomes any Minor Arcana of your choice.</span></div>
+      <div class="major-item"><span class="major-name">The Empress</span><span class="major-effect">Play at any time. Counts as the lowest possible card but may be played on top of any other card.</span></div>
+      <div class="major-item"><span class="major-name">The Chariot</span><span class="major-effect">Play at the start of a round. Name a suit — no Player may play cards of that suit for this round.</span></div>
+      <div class="major-item"><span class="major-name">The Moon</span><span class="major-effect">Play at the end of a round. Halves the points earned by the winning side (rounded down).</span></div>
+      <div class="major-item"><span class="major-name">The Magician</span><span class="major-effect">Play at any time. Pass any Minor Arcana from your hand to any other Player.</span></div>
+      <div class="major-item"><span class="major-name">The World</span><span class="major-effect">Play at any time. Immediately ends the current round. The side that played the last Minor Arcana is declared the winner.</span></div>
+      <div class="major-item"><span class="major-name">The Hermit</span><span class="major-effect">Play at the end of a round, after points are counted. Take any one card from the table back into your hand. The round's total score is reduced.</span></div>
+      <div class="major-item"><span class="major-name">The Tower</span><span class="major-effect">Play at any time. Destroys the most recently played Major Arcana and cancels its effect.</span></div>
+      <div class="major-item"><span class="major-name">The Hanged Man</span><span class="major-effect">Play before your turn. Place any number of additional cards beneath your Minor Arcana — they have no effect but increase the round's stakes.</span></div>
+      <div class="major-item"><span class="major-name">Strength</span><span class="major-effect">Play at any time. Interrupts the current turn and passes it to a Player of your choosing (even yourself).</span></div>
+      <div class="major-item"><span class="major-name">Death</span><span class="major-effect">Play at any time. Discard all remaining cards from your hand into the Fire in favor of your side and leave the Circle. The next Player steps in.</span></div>
+      <div class="major-item"><span class="major-name">The Sun</span><span class="major-effect">Play at the end of a round. The winning side gains bonus points equal to half the round's score (rounded up).</span></div>
+      <div class="major-item"><span class="major-name">Justice</span><span class="major-effect">Play at the end of a round. Points are split equally between both sides. If odd, a random Minor Arcana from the stake carries over to the next round.</span></div>
+      <div class="major-item"><span class="major-name">Judgement</span><span class="major-effect">Play at any time. Destroys the most recently played Minor Arcana. The Player who played it must play again. The card stays in the stake but no longer influences the round.</span></div>
+      <div class="major-item"><span class="major-name">Temperance</span><span class="major-effect">Play at any time. Interrupts the current turn and passes it to the next Player from the opposing side.</span></div>
+      <div class="major-item"><span class="major-name">Wheel of Fortune</span><span class="major-effect">Play at the end of a round. The entire stake goes to the losing side.</span></div>
+      <div class="major-item"><span class="major-name">The Fool</span><span class="major-effect">Play before your turn. Randomly take one card from the hand of any Player you point to.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span><a href="index.html">Back to The Unwritten 2</a></span>
+      <span>Kraków · October 24, 2026</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

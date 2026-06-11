@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical — The Unwritten 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1c1a14; --ink-muted:#5c5444; --ink-faint:#9a9080; --page:#f2ede4; --page-alt:#ece7dc; --gold:#9a7d3a; --rule:#cfc5ae; --rule-thin:rgba(154,125,58,0.22); --serif:'Cormorant Garamond','Georgia',serif; --caps:'Cormorant SC','Georgia',serif; --sans:'Helvetica Neue','Arial',sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--page); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.75; }
+  a { color:var(--ink); } a:hover { color:var(--gold); opacity:1; }
+  .container { max-width:700px; margin:0 auto; padding:0 28px; }
+  .sitenav { border-bottom:1px solid var(--rule); }
+  .sitenav-inner { max-width:700px; margin:0 auto; padding:0 28px; display:flex; align-items:center; }
+  .sitenav-brand { font-family:var(--caps); font-size:13px; letter-spacing:.14em; color:var(--ink); text-decoration:none; padding:17px 0; margin-right:32px; white-space:nowrap; }
+  .sitenav-brand:hover { color:var(--gold); opacity:1; }
+  .sitenav-links { display:flex; }
+  .sitenav-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; padding:19px 13px; border-bottom:1.5px solid transparent; display:block; }
+  .sitenav-links a:hover { color:var(--gold); opacity:1; }
+  .sitenav-links a.active { color:var(--gold); border-bottom-color:var(--gold); }
+  header { padding:48px 0 36px; border-bottom:1px solid var(--rule); }
+  .eyebrow { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  h1 { font-family:var(--serif); font-size:clamp(36px,6vw,54px); font-weight:400; line-height:1.05; }
+  section { padding:40px 0; border-bottom:1px solid var(--rule); }
+  section:last-of-type { border-bottom:none; }
+  h2 { font-family:var(--serif); font-size:27px; font-weight:400; margin-bottom:18px; }
+  h3 { font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; margin-top:28px; }
+  h3:first-child { margin-top:0; }
+  p { font-size:15px; margin-bottom:12px; line-height:1.75; }
+  p:last-child { margin-bottom:0; }
+  p.muted { color:var(--ink-muted); font-size:14px; }
+  .info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; }
+  .info-label { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; }
+  .info-value { font-size:15px; line-height:1.5; }
+  .timeline { margin-top:4px; border-top:1px solid var(--rule); }
+  .timeline-row { display:grid; grid-template-columns:80px 1fr; gap:20px; padding:13px 0; border-bottom:1px solid var(--rule-thin); align-items:baseline; }
+  .timeline-row:last-child { border-bottom:none; }
+  .tl-date { font-size:14px; color:var(--gold); font-family:var(--serif); white-space:nowrap; }
+  .tl-label { color:var(--ink-muted); font-size:14px; }
+  .price-rows { margin-top:4px; }
+  .price-row { display:flex; justify-content:space-between; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--rule-thin); gap:16px; }
+  .price-row:last-child { border-bottom:none; }
+  .price-amount { font-family:var(--serif); font-size:18px; font-weight:400; }
+  .acts { margin-top:4px; }
+  .act { padding:14px 0; border-bottom:1px solid var(--rule-thin); }
+  .act:last-child { border-bottom:none; }
+  .act-label { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .act p { margin-bottom:0; }
+  .flags { margin-top:10px; padding:14px 20px; border-left:2px solid var(--gold); background:var(--page-alt); }
+  .flags p { font-size:14px; color:var(--ink-muted); margin:0; }
+  .btn { display:inline-block; padding:10px 22px; text-decoration:none; font-size:10px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; transition:all .15s; }
+  .btn-primary { background:var(--ink); color:var(--page); border:1px solid var(--ink); }
+  .btn-primary:hover { background:var(--gold); border-color:var(--gold); color:var(--page); opacity:1; }
+  footer { padding:28px 0 52px; font-size:11px; color:var(--ink-faint); }
+  .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid var(--rule-thin); padding-top:20px; letter-spacing:.05em; }
+  .footer-inner a { color:var(--ink-faint); text-decoration:none; }
+  .footer-inner a:hover { color:var(--gold); opacity:1; }
+  @media(max-width:520px){.timeline-row{grid-template-columns:70px 1fr}.sitenav-links a{padding:16px 8px;font-size:9px;letter-spacing:.1em}}
+</style>
+</head>
+<body>
+
+<nav class="sitenav">
+  <div class="sitenav-inner">
+    <a href="index.html" class="sitenav-brand">The Unwritten 2</a>
+    <div class="sitenav-links">
+      <a href="index.html">Home</a>
+      <a href="practical.html" class="active">Practical</a>
+      <a href="rules.html">Rules</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header>
+    <p class="eyebrow">The Unwritten 2 &middot; Kraków &middot; October 24, 2026</p>
+    <h1>Practical</h1>
+  </header>
+
+  <section>
+    <h2>Key information</h2>
+    <div class="info-grid">
+      <div>
+        <div class="info-label">Date</div>
+        <div class="info-value">October 24, 2026</div>
+      </div>
+      <div>
+        <div class="info-label">Location</div>
+        <div class="info-value"><a href="https://www.facebook.com/KrAtelier/" target="_blank" style="text-decoration:none;border-bottom:1px solid var(--rule);">Atelier Krakowskie</a><br><span style="color:var(--ink-faint);font-size:13px;">Kraków, Poland</span></div>
+      </div>
+      <div>
+        <div class="info-label">Language</div>
+        <div class="info-value">English</div>
+      </div>
+      <div>
+        <div class="info-label">Players</div>
+        <div class="info-value">20+</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Signup and cost</h2>
+    <div class="price-rows">
+      <div class="price-row">
+        <span>Ticket</span>
+        <span class="price-amount">60 EUR</span>
+      </div>
+    </div>
+    <h3>Timeline</h3>
+    <div class="timeline">
+      <div class="timeline-row"><span class="tl-date">Jun 1</span><span class="tl-label">Signup window opens</span></div>
+      <div class="timeline-row"><span class="tl-date">Jul 1</span><span class="tl-label">Signup window closes</span></div>
+      <div class="timeline-row"><span class="tl-date">Jul 11</span><span class="tl-label">Role distribution announced</span></div>
+      <div class="timeline-row"><span class="tl-date">Oct 24</span><span class="tl-label">LARP</span></div>
+    </div>
+    <h3>How signups work</h3>
+    <p>Fill in the sign-up form during the signup window (June 1 — July 1). You may suggest a character to play. Role distribution will be announced on July 11. Payment details will be sent after role confirmation.</p>
+    <div style="margin-top:24px;"><a href="GOOGLE_FORM_URL" class="btn btn-primary">Sign up now</a></div>
+  </section>
+
+  <section>
+    <h2>Schedule</h2>
+    <div class="acts">
+      <div class="act"><div class="act-label">Workshops</div><p>The day starts with workshops: practicing rituals, rules, and mechanics. Time to meet your co-players and calibrate before the Game begins.</p></div>
+      <div class="act"><div class="act-label">Act I — 12:00–15:00</div><p>Players begin dispersed across the city, each with their Familiar. Short pre-designed scenes help build understanding of other characters and start your first alliances. Minor Arcana become available for collection. Not yet the time to reveal your alignment.</p></div>
+      <div class="act"><div class="act-label">Act II — 15:00–16:00 (lunch)</div><p>All Players and Familiars gather for a formal in-game lunch. Arcana collection pauses. You receive sealed envelopes with the Minor Arcana you collected in Act I and may begin using magic. Now is the time to feel which side you are drifting toward.</p></div>
+      <div class="act"><div class="act-label">Act III — 16:00–20:00</div><p>Major Arcana enter play. The rules shift. From this point on, it becomes possible to eliminate another Player. Gather every grain of power you can.</p></div>
+      <div class="act"><div class="act-label">Final act — 20:00</div><p>All players gather in one place. Everyone announces their side: Openers or Closers. All magical power is spent. This is where the story ends.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Food and costume</h2>
+    <h3>Food</h3>
+    <p>One in-game meal is provided by the organizers for all players (Act II lunch). Alcohol during the game is strictly forbidden. If you have dietary requirements, note them in the sign-up form.</p>
+    <h3>Costume</h3>
+    <p>Your costume can contain subtle clues to your character's identity. The setting is modern, but a touch of the gothic or Victorian is welcome. Think mood over accuracy. October in Kraków can be cold, rainy, and unpredictable — dress warmly and be prepared for wind and rain. Comfort comes first.</p>
+  </section>
+
+  <section>
+    <h2>Safety and accessibility</h2>
+    <h3>Physical demands</h3>
+    <p>This game requires significant walking through Kraków over the course of a day. October weather will likely be cold and wet. You will be on your feet for most of the game. If you have mobility concerns, contact us before signing up.</p>
+    <h3>Content</h3>
+    <p>The game contains competitive dynamics, potential betrayal, trust manipulation, and power imbalance. Characters may be eliminated in Act III. The setting draws from gothic horror literature — themes include existential uncertainty, fate, and the nature of identity. There is no graphic violence or sexual content.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>The Unwritten 2 &middot; Kraków &middot; October 24, 2026</span>
+      <span><a href="mailto:daria.lapus@gmail.com">daria.lapus@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

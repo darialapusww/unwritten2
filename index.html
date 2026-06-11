@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unwritten 2 — City LARP, Kraków, October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1c1a14; --ink-muted:#5c5444; --ink-faint:#9a9080; --page:#f2ede4; --page-alt:#ece7dc; --gold:#9a7d3a; --gold-light:#c4a45a; --rule:#cfc5ae; --rule-thin:rgba(154,125,58,0.22); --serif:'Cormorant Garamond','Georgia',serif; --caps:'Cormorant SC','Georgia',serif; --sans:'Helvetica Neue','Arial',sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--page); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.75; }
+  a { color:var(--ink); } a:hover { color:var(--gold); opacity:1; }
+  .container { max-width:700px; margin:0 auto; padding:0 28px; }
+  .sitenav { border-bottom:1px solid var(--rule); }
+  .sitenav-inner { max-width:700px; margin:0 auto; padding:0 28px; display:flex; align-items:center; }
+  .sitenav-brand { font-family:var(--caps); font-size:13px; letter-spacing:.14em; color:var(--ink); text-decoration:none; padding:17px 0; margin-right:32px; white-space:nowrap; }
+  .sitenav-brand:hover { color:var(--gold); opacity:1; }
+  .sitenav-links { display:flex; }
+  .sitenav-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; padding:19px 13px; border-bottom:1.5px solid transparent; display:block; }
+  .sitenav-links a:hover { color:var(--gold); opacity:1; }
+  .sitenav-links a.active { color:var(--gold); border-bottom-color:var(--gold); }
+  header { padding:56px 0 44px; }
+  .header-ornament { display:flex; align-items:center; gap:10px; margin-bottom:24px; }
+  .header-ornament .line { flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--gold)); opacity:.5; }
+  .header-ornament .line.rev { background:linear-gradient(90deg, var(--gold), transparent); }
+  .header-ornament .diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); flex-shrink:0; opacity:.8; }
+  .header-ornament .diamond-lg { width:8px; height:8px; background:transparent; border:1px solid var(--gold); transform:rotate(45deg); flex-shrink:0; opacity:.7; }
+  .eyebrow { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+  h1 { font-family:var(--serif); font-size:clamp(42px,8vw,74px); font-weight:400; line-height:1.0; letter-spacing:.01em; margin-bottom:22px; }
+  h1 .two { font-style:italic; color:var(--gold); }
+  .tagline { font-family:var(--serif); font-size:19px; font-style:italic; color:var(--ink-muted); max-width:540px; line-height:1.65; margin-bottom:32px; }
+  .header-meta { display:flex; gap:32px; flex-wrap:wrap; padding-top:24px; border-top:1px solid var(--rule-thin); }
+  .meta-item { font-size:12px; color:var(--ink-muted); line-height:1.45; }
+  .meta-item strong { display:block; font-size:15px; font-weight:400; color:var(--ink); font-family:var(--serif); }
+  .cta-bar { padding:28px 0; display:flex; align-items:center; gap:16px; flex-wrap:wrap; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .btn { display:inline-block; padding:10px 22px; text-decoration:none; font-size:10px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; transition:all .15s; }
+  .btn-primary { background:var(--ink); color:var(--page); border:1px solid var(--ink); }
+  .btn-primary:hover { background:var(--gold); border-color:var(--gold); color:var(--page); opacity:1; }
+  .btn-secondary { background:transparent; color:var(--ink-muted); border:1px solid var(--rule); }
+  .btn-secondary:hover { border-color:var(--gold); color:var(--gold); opacity:1; }
+  .signup-note { font-size:11px; color:var(--ink-faint); letter-spacing:.05em; }
+  section { padding:40px 0; border-bottom:1px solid var(--rule); }
+  section:last-of-type { border-bottom:none; }
+  h2 { font-family:var(--serif); font-size:27px; font-weight:400; margin-bottom:18px; letter-spacing:.01em; }
+  h3 { font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; margin-top:28px; }
+  h3:first-child { margin-top:0; }
+  p { font-size:15px; margin-bottom:12px; line-height:1.75; }
+  p:last-child { margin-bottom:0; }
+  p.muted { color:var(--ink-muted); font-size:14px; }
+  .flags { margin-top:10px; padding:14px 20px; border-left:2px solid var(--gold); background:var(--page-alt); }
+  .flags p { font-size:14px; color:var(--ink-muted); margin:0; }
+  .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:4px; }
+  .fit-col h3 { margin-top:0; }
+  .fit-list { list-style:none; padding:0; }
+  .fit-list li { font-size:14px; color:var(--ink-muted); padding:8px 0; border-bottom:1px solid var(--rule-thin); line-height:1.5; }
+  .fit-list li:last-child { border-bottom:none; }
+  .sides-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:4px; }
+  .side-label { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .acts { margin-top:4px; }
+  .act { padding:14px 0; border-bottom:1px solid var(--rule-thin); }
+  .act:last-child { border-bottom:none; }
+  .act-label { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .act p { margin-bottom:0; }
+  .char-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:4px; border-top:1px solid var(--rule); }
+  .char-item { padding:14px 16px 14px 0; border-bottom:1px solid var(--rule-thin); }
+  .char-item:nth-child(even) { padding-left:20px; border-left:1px solid var(--rule); }
+  .char-name { font-size:15px; font-weight:400; margin-bottom:3px; font-family:var(--serif); letter-spacing:.02em; }
+  .char-desc { font-size:13px; color:var(--ink-muted); line-height:1.55; margin:0; }
+  footer { padding:28px 0 52px; font-size:11px; color:var(--ink-faint); }
+  .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid var(--rule-thin); padding-top:20px; letter-spacing:.05em; }
+  .footer-inner a { color:var(--ink-faint); text-decoration:none; }
+  .footer-inner a:hover { color:var(--gold); opacity:1; }
+  @media(max-width:520px){.fit-grid,.sides-grid,.char-grid{grid-template-columns:1fr}.char-item:nth-child(even){padding-left:0;border-left:none}.header-meta{gap:20px}.sitenav-links a{padding:16px 8px;font-size:9px;letter-spacing:.12em}}
+</style>
+</head>
+<body>
+
+<nav class="sitenav">
+  <div class="sitenav-inner">
+    <a href="index.html" class="sitenav-brand">The Unwritten 2</a>
+    <div class="sitenav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="practical.html">Practical</a>
+      <a href="rules.html">Rules</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header>
+    <div class="header-ornament">
+      <div class="line"></div>
+      <div class="diamond"></div>
+      <div class="diamond-lg"></div>
+      <div class="diamond"></div>
+      <div class="line rev"></div>
+    </div>
+    <p class="eyebrow">City LARP &middot; Kraków, Poland &middot; October 2026</p>
+    <h1>The Unwritten <span class="two">2</span></h1>
+    <p class="tagline">Characters from myth, history, and literature walk the city streets on one October day.</p>
+    <div class="header-meta">
+      <div class="meta-item"><strong>October 24, 2026</strong>one day</div>
+      <div class="meta-item"><strong>Kraków, Poland</strong>city LARP</div>
+      <div class="meta-item"><strong>20+ players</strong>Players &amp; Familiars</div>
+    </div>
+  </header>
+
+  <div class="cta-bar">
+    <a href="GOOGLE_FORM_URL" class="btn btn-primary">Sign up</a>
+    <a href="https://discord.gg/fWfxxT9m7F" class="btn btn-secondary">Discord</a>
+    <a href="https://fb.me/e/7UWUoRN4E" class="btn btn-secondary">Facebook</a>
+    <span class="signup-note">Signups open June 1 — July 1, 2026</span>
+  </div>
+
+  <section>
+    <h2>About the game</h2>
+    <p>This is a game about characters who have realized they are just characters. They know — or suspect — that they were created by someone else, that their stories were written before they could choose. Now they face the Great Game: a ritual played out across a single October day that will decide the fate of their world.</p>
+    <p>You will walk the city's streets, perform rituals that demand conversation and cunning, and build both your magical power and your alliances — until the hour arrives when all must be spent.</p>
+    <p>Based on Roger Zelazny's <em>A Night in the Lonesome October</em> and Pirandello's <em>Six Characters in Search of an Author</em>. Inspired by Lovecraft, Poe, and Bram Stoker.</p>
+    <h3>Red flags</h3>
+    <div class="flags">
+      <p>This game requires a lot of walking through the city. It will likely be cold and rainy in October. The game is competitive and includes power imbalance between characters. Your character may face betrayal and trust manipulation.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Is this game for you?</h2>
+    <div class="fit-grid">
+      <div class="fit-col">
+        <h3>Play if you</h3>
+        <ul class="fit-list">
+          <li>Enjoy creating stories collaboratively</li>
+          <li>Like asking questions and interpreting signs</li>
+          <li>Enjoy competitive play and building schemes</li>
+          <li>Can find meaning in losing, falling into traps, struggling</li>
+          <li>Like walking and philosophical conversations</li>
+        </ul>
+      </div>
+      <div class="fit-col">
+        <h3>Skip if you</h3>
+        <ul class="fit-list">
+          <li>Only enjoy fully pre-written characters</li>
+          <li>Don't have time for GM communication before the larp</li>
+          <li>Struggle to improvise and create scenes around you</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Setting</h2>
+    <p>The game takes place in a fictional version of Kraków, played over one October day. In-game, this day represents the entire month. Three acts reflect the escalation of the Game — with each act the rules shift and the stakes grow. Through the game Players need to choose a side between Openers and Closers.</p>
+
+    <h3>Openers and Closers</h3>
+    <p>There is no certainty in joining Openers or Closers. Nobody knows what happens, should one side win. Players may speculate, debate, and convince others, but no one fully knows. Everyone arrives believing that closing means continuity, and opening will create change.</p>
+    <div class="sides-grid">
+      <div>
+        <div class="side-label">Openers</div>
+        <p>To Open means to alter something fundamental about the world. Some Openers hope to understand more about their world through that change. Others want to Open the door to their creators, while some seek revenge on them. But none know what Opening will truly bring.</p>
+      </div>
+      <div>
+        <div class="side-label">Closers</div>
+        <p>Closers have their own plans for their stories. They don't invite change from the outside — they follow and change their fates in the world they know. Some seek to prevent the chaos and destruction they believe the Opening would bring. Others see more opportunity in the world they can more easily understand.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:20px;">At the start, no Player belongs to a side. Choosing between Openers and Closers is part of the Game itself. In the end, everyone must choose a side before the final battle begins.</p>
+
+    <h3>Magic</h3>
+    <p>Every character has magical powers. Power is represented by tarot cards — Minor Arcana gathered through rituals across the city, Major Arcana entering play in Act III. All magic is spent in the final battle.</p>
+
+    <h3>Main principles</h3>
+    <p><strong>Play for drama.</strong> While the game has competitive elements, the heart of the experience is your story. Help each other build conflicts and characters together.</p>
+    <p><strong>Ask questions and change.</strong> Let your character question the nature of their world and grow with each answer they find.</p>
+    <p><strong>Yes, and.</strong> The world is mysterious. Nobody knows everything. Play around it.</p>
+  </section>
+
+  <section>
+    <h2>Characters</h2>
+    <p>You can play as a <strong>Player</strong> — a powerful magician who gathers power and engages in intrigue — or as a <strong>Familiar</strong> — an animal companion bound to a Player, with unique abilities and their own secret communication channel.</p>
+    <p>Players and Familiars usually play in pairs. Character sheets are brief: an impression, the character's main questions, their problems. You may suggest your own character from any myth, book, history, or other media. You are free to play any character regardless of their gender or age in canon.</p>
+
+    <h3>Example players</h3>
+    <div class="char-grid">
+      <div class="char-item"><div class="char-name">Sherlock Holmes</div><p class="char-desc">A mind built for patterns, endlessly rearranging facts in search of a truth that might not exist.</p></div>
+      <div class="char-item"><div class="char-name">Baba Yaga</div><p class="char-desc">She walks the line between terror and wisdom, though sometimes she forgets which she prefers.</p></div>
+      <div class="char-item"><div class="char-name">Dracula</div><p class="char-desc">A legend so old he barely remembers if the thirst came first, or the story.</p></div>
+      <div class="char-item"><div class="char-name">Circe</div><p class="char-desc">Once a goddess, perhaps. Or just a woman who learned to turn her disappointment into power.</p></div>
+      <div class="char-item"><div class="char-name">John Constantine</div><p class="char-desc">A con man, a mage, or both. He'll lie about which parts he regrets.</p></div>
+      <div class="char-item"><div class="char-name">Mary Poppins</div><p class="char-desc">Stranger than she appears. But always perfect.</p></div>
+      <div class="char-item"><div class="char-name">Aleister Crowley</div><p class="char-desc">Once the self-proclaimed Great Beast. Now uncertain whether he wrote the script, or just follows it.</p></div>
+      <div class="char-item"><div class="char-name">Lilith</div><p class="char-desc">Is she the first woman, a demon, or a footnote in someone else's myth? Depends who you ask.</p></div>
+      <div class="char-item"><div class="char-name">Joan of Arc</div><p class="char-desc">She knows her fate. Will she accept the burden of being a symbol of hope, knowing that her fate ends with fire and pain?</p></div>
+      <div class="char-item"><div class="char-name">Peter Pan</div><p class="char-desc">Never grew up. Never had to. And now he hears whispers of his own shadow.</p></div>
+      <div class="char-item"><div class="char-name">Bisclavret</div><p class="char-desc">A knight who becomes a wolf. Or a wolf who was told he was a knight.</p></div>
+      <div class="char-item"><div class="char-name">Frankenstein's Creature</div><p class="char-desc">Created without consent, abandoned without explanation. He has had a long time to think about what he owes his maker.</p></div>
+    </div>
+    <p class="muted" style="margin-top:16px;">These are examples. You can suggest your own character in the sign-up form.</p>
+
+    <h3>Example familiars</h3>
+    <div class="char-grid">
+      <div class="char-item"><div class="char-name">Cat</div><p class="char-desc">Watchful. Knows more than it lets on.</p></div>
+      <div class="char-item"><div class="char-name">Raven</div><p class="char-desc">A creature of omen and memory. Speaks in riddles.</p></div>
+      <div class="char-item"><div class="char-name">Fox</div><p class="char-desc">Lies as easily as it breathes. Clever and dangerously curious.</p></div>
+      <div class="char-item"><div class="char-name">Owl</div><p class="char-desc">Sees in the dark. Asks difficult questions and expects answers.</p></div>
+      <div class="char-item"><div class="char-name">Dog</div><p class="char-desc">Loyal beyond reason, and brave in ways no one expects.</p></div>
+      <div class="char-item"><div class="char-name">Snake</div><p class="char-desc">Cold, ancient, and deeply aware. Sheds its skin and transforms.</p></div>
+      <div class="char-item"><div class="char-name">Magpie</div><p class="char-desc">Collects bright things — secrets, shiny objects, half-truths. Never gives them back.</p></div>
+      <div class="char-item"><div class="char-name">Toad</div><p class="char-desc">Still and silent, it watches the world pass with ancient eyes. Carries old magic in its skin.</p></div>
+      <div class="char-item"><div class="char-name">Bat</div><p class="char-desc">Navigates by the sound of lost souls. Sometimes hears something it shouldn't have.</p></div>
+      <div class="char-item"><div class="char-name">Mouse</div><p class="char-desc">Small and unnoticed, but still can tip the balance. Survives through wit and quiet courage.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>The Unwritten 2 &middot; Kraków &middot; October 24, 2026</span>
+      <span><a href="mailto:daria.lapus@gmail.com">daria.lapus@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

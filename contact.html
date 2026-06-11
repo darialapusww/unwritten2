@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — The Unwritten 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1c1a14; --ink-muted:#5c5444; --ink-faint:#9a9080; --page:#f2ede4; --page-alt:#ece7dc; --gold:#9a7d3a; --rule:#cfc5ae; --rule-thin:rgba(154,125,58,0.22); --serif:'Cormorant Garamond','Georgia',serif; --caps:'Cormorant SC','Georgia',serif; --sans:'Helvetica Neue','Arial',sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--page); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.75; }
+  a { color:var(--ink); } a:hover { color:var(--gold); opacity:1; }
+  .container { max-width:700px; margin:0 auto; padding:0 28px; }
+  .sitenav { border-bottom:1px solid var(--rule); }
+  .sitenav-inner { max-width:700px; margin:0 auto; padding:0 28px; display:flex; align-items:center; }
+  .sitenav-brand { font-family:var(--caps); font-size:13px; letter-spacing:.14em; color:var(--ink); text-decoration:none; padding:17px 0; margin-right:32px; white-space:nowrap; }
+  .sitenav-brand:hover { color:var(--gold); opacity:1; }
+  .sitenav-links { display:flex; }
+  .sitenav-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; padding:19px 13px; border-bottom:1.5px solid transparent; display:block; }
+  .sitenav-links a:hover { color:var(--gold); opacity:1; }
+  .sitenav-links a.active { color:var(--gold); border-bottom-color:var(--gold); }
+  header { padding:48px 0 36px; border-bottom:1px solid var(--rule); }
+  .eyebrow { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  h1 { font-family:var(--serif); font-size:clamp(36px,6vw,54px); font-weight:400; line-height:1.05; }
+  section { padding:40px 0; border-bottom:1px solid var(--rule); }
+  section:last-of-type { border-bottom:none; }
+  h2 { font-family:var(--serif); font-size:27px; font-weight:400; margin-bottom:18px; }
+  p { font-size:15px; margin-bottom:12px; line-height:1.75; }
+  p:last-child { margin-bottom:0; }
+  p.muted { color:var(--ink-muted); font-size:14px; }
+  .contact-block { padding:24px 0; border-bottom:1px solid var(--rule-thin); }
+  .contact-block:last-child { border-bottom:none; }
+  .contact-label { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .contact-value { font-size:16px; }
+  .contact-value a { text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:1px; }
+  .contact-value a:hover { color:var(--gold); border-color:var(--gold); opacity:1; }
+  .social-row { display:flex; gap:24px; flex-wrap:wrap; }
+  .social-row a { font-size:14px; text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:1px; }
+  .social-row a:hover { color:var(--gold); border-color:var(--gold); opacity:1; }
+  .organizer-list { margin-top:4px; border-top:1px solid var(--rule); }
+  .organizer { padding:12px 0; border-bottom:1px solid var(--rule-thin); font-size:15px; }
+  .organizer:last-child { border-bottom:none; }
+  .organizer strong { font-weight:400; font-family:var(--serif); }
+  .organizer span { color:var(--ink-muted); font-size:13px; margin-left:8px; }
+  footer { padding:28px 0 52px; font-size:11px; color:var(--ink-faint); }
+  .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid var(--rule-thin); padding-top:20px; letter-spacing:.05em; }
+  .footer-inner a { color:var(--ink-faint); text-decoration:none; }
+  .footer-inner a:hover { color:var(--gold); opacity:1; }
+  @media(max-width:520px){.sitenav-links a{padding:16px 8px;font-size:9px;letter-spacing:.1em}}
+</style>
+</head>
+<body>
+
+<nav class="sitenav">
+  <div class="sitenav-inner">
+    <a href="index.html" class="sitenav-brand">The Unwritten 2</a>
+    <div class="sitenav-links">
+      <a href="index.html">Home</a>
+      <a href="practical.html">Practical</a>
+      <a href="rules.html">Rules</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header>
+    <p class="eyebrow">The Unwritten 2 &middot; Kraków &middot; October 24, 2026</p>
+    <h1>Contact</h1>
+  </header>
+
+  <section>
+    <div class="contact-block">
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="mailto:daria.lapus@gmail.com">daria.lapus@gmail.com</a></div>
+      <p class="muted" style="margin-top:8px;">For questions about signup, characters, accessibility, or anything else.</p>
+    </div>
+    <div class="contact-block">
+      <div class="contact-label">Community</div>
+      <div class="social-row">
+        <a href="https://discord.gg/fWfxxT9m7F" target="_blank">Discord</a>
+        <a href="https://fb.me/e/7UWUoRN4E" target="_blank">Facebook</a>
+      </div>
+    </div>
+    <div class="contact-block">
+      <div class="contact-label">Venue</div>
+      <div class="contact-value"><a href="https://www.facebook.com/KrAtelier/" target="_blank">Atelier Krakowskie</a></div>
+      <p class="muted" style="margin-top:4px;">Kraków, Poland. Exact address sent after role confirmation.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Organizers</h2>
+    <div class="organizer-list">
+      <div class="organizer"><strong>[Organizer name]</strong><span>[Role]</span></div>
+      <div class="organizer"><strong>[Organizer name]</strong><span>[Role]</span></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>The Unwritten 2 &middot; Kraków &middot; October 24, 2026</span>
+      <span><a href="mailto:daria.lapus@gmail.com">daria.lapus@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
