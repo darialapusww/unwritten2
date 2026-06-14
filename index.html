@@ -22,7 +22,7 @@
   .container { max-width:700px; margin:0 auto; padding:0 28px; }
 
   /* Nav */
-  .sitenav { border-bottom:1px solid var(--rule); }
+  .sitenav { border-bottom:1px solid var(--rule); position:sticky; top:0; background:var(--page); z-index:100; }
   .sitenav-inner { max-width:700px; margin:0 auto; padding:0 28px; display:flex; align-items:center; }
   .sitenav-brand { font-family:var(--caps); font-size:13px; letter-spacing:.14em; color:var(--ink); text-decoration:none; padding:17px 0; margin-right:32px; white-space:nowrap; }
   .sitenav-brand:hover { color:var(--gold); opacity:1; }
@@ -47,8 +47,9 @@
   .meta-item strong { display:block; font-size:15px; font-weight:400; color:var(--ink); font-family:var(--serif); }
 
   /* CTA */
-  .cta-bar { padding:28px 0; display:flex; align-items:center; gap:16px; flex-wrap:wrap; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
-  .btn { display:inline-block; padding:11px 26px; text-decoration:none; font-size:10px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; transition:all .15s; }
+  .cta-bar { padding:28px 0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .cta-buttons { display:flex; gap:10px; flex-wrap:nowrap; }
+  .btn { display:inline-block; padding:11px 26px; text-decoration:none; font-size:10px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; transition:all .15s; white-space:nowrap; }
   .btn-primary { background:var(--ink); color:var(--page); border:1px solid var(--ink); }
   .btn-primary:hover { background:var(--gold); border-color:var(--gold); color:var(--page); opacity:1; }
   .btn-secondary { background:transparent; color:var(--ink-muted); border:1px solid var(--rule); }
@@ -103,12 +104,14 @@
     .char-grid { grid-template-columns:1fr; }
     .char-item:nth-child(even) { padding-left:0; border-left:none; }
     .header-meta { gap:16px; }
-    .sitenav-inner { flex-wrap:wrap; gap:0; }
-    .sitenav-brand { margin-right:auto; }
-    .sitenav-links a { padding:14px 10px; font-size:9px; letter-spacing:.1em; }
+    .sitenav-brand { display:none; }
+    .sitenav-links { width:100%; justify-content:space-around; }
+    .sitenav-links a { padding:14px 0; font-size:10px; letter-spacing:.12em; flex:1; text-align:center; }
     h1 { font-size:clamp(44px,12vw,72px); }
     h2 { font-size:28px; }
-    .cta-bar { flex-direction:column; align-items:flex-start; }
+    .cta-bar { flex-direction:column; align-items:stretch; gap:12px; }
+    .cta-buttons { width:100%; gap:8px; }
+    .cta-buttons .btn { flex:1; text-align:center; padding:11px 4px; }
     .header-ornament { display:none; }
   }
 </style>
@@ -148,10 +151,12 @@
   </header>
 
   <div class="cta-bar">
-    <a href="GOOGLE_FORM_URL" class="btn btn-primary">Sign up</a>
-    <a href="https://discord.gg/fWfxxT9m7F" class="btn btn-secondary">Discord</a>
-    <a href="https://fb.me/e/7UWUoRN4E" class="btn btn-secondary">Facebook</a>
-    <span class="signup-note">Signups open June 1 — July 1, 2026</span>
+    <div class="cta-buttons">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScu1Q-nqZqHx9j_2UStkRFoZosLaEvZcpI97Wz-hvxBHTXagQ/viewform?usp=dialog" class="btn btn-primary">Sign up</a>
+      <a href="https://discord.gg/fWfxxT9m7F" class="btn btn-secondary">Discord</a>
+      <a href="https://fb.me/e/7UWUoRN4E" class="btn btn-secondary">Facebook</a>
+    </div>
+    <span class="signup-note">Signups open until July 1, 2026</span>
   </div>
 
   <!-- About -->
@@ -262,7 +267,7 @@
   <!-- Bottom CTA -->
   <div class="bottom-cta">
     <p>Ready to play The Great Game?</p>
-    <a href="GOOGLE_FORM_URL" class="btn btn-primary">Sign up now</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScu1Q-nqZqHx9j_2UStkRFoZosLaEvZcpI97Wz-hvxBHTXagQ/viewform?usp=dialog" class="btn btn-primary">Sign up now</a>
   </div>
 
 </div>

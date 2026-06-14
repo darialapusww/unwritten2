@@ -13,7 +13,7 @@
   body { background:var(--page); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.75; }
   a { color:var(--ink); } a:hover { color:var(--gold); opacity:1; }
   .container { max-width:700px; margin:0 auto; padding:0 28px; }
-  .sitenav { border-bottom:1px solid var(--rule); }
+  .sitenav { border-bottom:1px solid var(--rule); position:sticky; top:0; background:var(--page); z-index:100; }
   .sitenav-inner { max-width:700px; margin:0 auto; padding:0 28px; display:flex; align-items:center; }
   .sitenav-brand { font-family:var(--caps); font-size:13px; letter-spacing:.14em; color:var(--ink); text-decoration:none; padding:17px 0; margin-right:32px; white-space:nowrap; }
   .sitenav-brand:hover { color:var(--gold); opacity:1; }
@@ -50,7 +50,7 @@
   .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid var(--rule-thin); padding-top:20px; letter-spacing:.05em; }
   .footer-inner a { color:var(--ink-faint); text-decoration:none; }
   .footer-inner a:hover { color:var(--gold); opacity:1; }
-  @media(max-width:600px){.sitenav-links a{padding:14px 9px;font-size:9px;letter-spacing:.1em}h1{font-size:clamp(32px,10vw,52px)}h2{font-size:26px}}
+  @media(max-width:600px){.sitenav-brand{display:none}.sitenav-links{width:100%;justify-content:space-around}.sitenav-links a{padding:14px 0;font-size:10px;letter-spacing:.12em;flex:1;text-align:center}h1{font-size:clamp(32px,10vw,52px)}h2{font-size:26px}}
 </style>
 </head>
 <body>
@@ -95,7 +95,7 @@
   </section>
   <div style="padding:40px 0; text-align:center; border-top:1px solid var(--rule);">
     <p style="font-family:var(--serif);font-size:20px;font-style:italic;color:var(--ink-muted);margin-bottom:24px;">Ready to join The Great Game?</p>
-    <a href="GOOGLE_FORM_URL" class="btn btn-primary">Sign up now</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScu1Q-nqZqHx9j_2UStkRFoZosLaEvZcpI97Wz-hvxBHTXagQ/viewform?usp=dialog" class="btn btn-primary">Sign up now</a>
   </div>
 
 </div>
